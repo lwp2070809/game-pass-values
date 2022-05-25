@@ -13,9 +13,14 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/views/Home/index.vue'),
             },
             {
-                path: '/detail',
-                name: 'Detail',
-                component: () => import('@/views/Detail/index.vue'),
+                path: '/detail/xbox-game-pass-ultimate',
+                name: 'Detail-xbox-game-pass-ultimate',
+                component: () => import('@/views/Detail/xbox-game-pass-ultimate.vue'),
+            },
+            {
+                path: '/detail/playstation-plus-extra',
+                name: 'Detail-playstation-plus-extra',
+                component: () => import('@/views/Detail/playstation-plus-extra.vue'),
             }
         ]
     }
