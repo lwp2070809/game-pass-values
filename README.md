@@ -2,7 +2,7 @@
 
 * In development
 * Noob front-end developer
-* Thanks for @webguicai
+* Thanks for @[webguicai](https://github.com/webguicai)
 
 ## 开发计划
 
