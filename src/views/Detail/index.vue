@@ -11,43 +11,24 @@
   </el-table>
 </template>
 
-<script>
+<script lang="ts" setup>
 import Papa from 'papaparse';
 
-export default {
-  name: 'Detail',
-  data() {
-    return {
-      tableData: [],
-    };
-  },
-  methods: {
-    parseCsv() {
-      Papa.parse('games-data/xbox-game-pass-ultimate.csv', {
-        download: true,
-        header: true,
-        complete: (results) => {
-          console.log(results.data);
-          this.tableData = results.data;
-        },
-      });
-    },
-  },
-  created() {
-    this.parseCsv();
-  },
-};
+import { onMounted, ref } from 'vue'
+let tableData = ref<unknown[] | object[]>([])
 
-// const tableData = [
-//   {
-//     "英文名": "7 Days to Die",
-//     "中文名": "七日杀",
-//     "美区价格": "30",
-//     "港区价格": "159",
-//     "中文": "中pc",
-//     "评分": "37",
-//     "年份": "2013"
-//   }
-// ]
+const getData = async () => {
+  Papa.parse('games-data/xbox-game-pass-ultimate.csv', {
+    download: true,
+    header: true,
+    complete: (results) => {
+      tableData.value = [...results.data] || []
+    },
+  });
+}
+onMounted(() => {
+  getData()
+})
+
 
 </script>
