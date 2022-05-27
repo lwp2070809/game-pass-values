@@ -1,8 +1,8 @@
 <template>
   <el-row>
-    <el-col>
-      <router-link to="/">回到首页</router-link>
-    </el-col>
+    <el-button type="primary" link @click="jumpHome()">
+      返回首页
+    </el-button>
   </el-row>
   <el-row>
     <el-col><strong>Playstation Plus Extra</strong></el-col>
@@ -63,6 +63,9 @@ export default {
           this.totalScoredNum += 1;
         }
       });
+    },
+    jumpHome() {
+      window.location.href = '/';
     },
   },
   mounted() {

@@ -1,7 +1,9 @@
 <template>
   <el-row>
     <el-col>
-      <router-link to="/">回到首页</router-link>
+      <el-button type="primary" link @click="jumpHome()">
+        返回首页
+      </el-button>
     </el-col>
   </el-row>
   <el-row>
@@ -68,6 +70,9 @@ export default {
           this.totalScoredNum += 1;
         }
       });
+    },
+    jumpHome() {
+      window.location.href = '/';
     },
   },
   mounted() {
