@@ -15,5 +15,6 @@ export default defineConfig({
       protocol: 'ws',
       host: '127.0.0.1'
     }
-  }
+  },
+  base: '/game-pass-values/',
 })

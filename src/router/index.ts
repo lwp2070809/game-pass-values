@@ -27,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-    history: createWebHashHistory('/game-pass-values/'),
+    history: createWebHashHistory(),
     routes
 })
 
