@@ -5,7 +5,7 @@
     </el-col>
   </el-row>
   <el-row>
-    <el-col>Playstation Plus Extra</el-col>
+    <el-col><strong>Playstation Plus Extra</strong></el-col>
     <el-col>总数量: {{ totalNum }}</el-col>
     <el-col>中文游戏数: {{ totalChnNum }}</el-col>
     <el-col>港服价值: {{ (hkTotalPrice).toFixed(2) }} HKD</el-col>
@@ -24,6 +24,7 @@
 
 <script >
 
+import common from '@/utils/common';
 import Papa from 'papaparse';
 
 export default {
@@ -45,7 +46,7 @@ export default {
   },
   methods: {
     async fetchData() {
-      const response = await fetch('games-data/playstation-plus-extra.csv');
+      const response = await fetch(common.playstationPlusExtraData);
       const text = await response.text();
       const result = Papa.parse(text, { header: true });
       this.tableData = result.data;

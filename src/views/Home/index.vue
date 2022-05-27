@@ -167,7 +167,7 @@ export default {
     methods: {
         getXboxData() {
             return new Promise((resolve, reject) => {
-                Papa.parse('games-data/xbox-game-pass-ultimate.csv', {
+                Papa.parse(common.xboxGamePassUltimateData, {
                     header: true,
                     download: true,
                     complete: (results) => {
@@ -179,7 +179,7 @@ export default {
         },
         getPlaystationData() {
             return new Promise((resolve, reject) => {
-                Papa.parse('games-data/playstation-plus-extra.csv', {
+                Papa.parse(common.playstationPlusExtraData, {
                     header: true,
                     download: true,
                     complete: (results) => {

@@ -5,7 +5,7 @@
     </el-col>
   </el-row>
   <el-row>
-    <el-col>Xbox Game Pass Ultimate (主机版) </el-col>
+    <el-col> <strong>Xbox Game Pass Ultimate (主机版, 不含PGP)</strong></el-col>
     <el-col>总数量: {{ totalNum }}</el-col>
     <el-col>中文游戏数: {{ totalChnNum }}</el-col>
     <el-col>港区价值: {{ (hkTotalPrice).toFixed(2) }} HKD</el-col>
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     async fetchData() {
-      const response = await fetch('games-data/xbox-game-pass-ultimate.csv');
+      const response = await fetch(common.xboxGamePassUltimateData);
       const text = await response.text();
       const result = Papa.parse(text, { header: true });
       this.tableData = result.data;
