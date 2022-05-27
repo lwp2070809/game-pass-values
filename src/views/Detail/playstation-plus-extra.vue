@@ -65,7 +65,7 @@ export default {
       });
     },
     jumpHome() {
-      window.location.href = '/';
+      window.location.href = '/game-pass-values';
     },
   },
   mounted() {
