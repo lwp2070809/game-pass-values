@@ -63,6 +63,12 @@
                 <div id="scoreChart" style="width: 100%;height:400px;"></div>
             </el-col>
         </el-row>
+        <el-row>
+            <el-col :xs="1" :sm="1" :md="4" :lg="4" :xl="4"></el-col>
+            <el-col :xs="22" :sm="22" :md="16" :lg="16" :xl="16">
+                <el-divider></el-divider>
+            </el-col>
+        </el-row>
         <el-row justify="center" align="middle">
             <el-col :xs="22" :sm="16" :md="12" :lg="8" :xl="6">
                 <div id="releaseYearChart" style="width: 100%;height:400px;"></div>
