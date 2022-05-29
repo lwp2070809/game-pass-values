@@ -7,13 +7,16 @@
                     <img style="width: 100%; display: block" src="@/assets/images/xbox-game-pass-ultimate.jpeg" alt="">
                     <div style="padding: 8px">
                         <el-row justify="center" align="middle">
-                            <el-col><span><strong>Xbox Game Pass Ultimate</strong></span><span>&nbsp价值</span></el-col>
+                            <el-col><span><strong>Xbox Game Pass Ultimate</strong></span><span>&nbsp;价值</span></el-col>
                         </el-row>
                         <el-button @click="jumpXbox" size="large" type="success" plain>
                             <count-up class="count-up" :end-val="xbox.totalRate" :options="countUpOptions"></count-up>
                         </el-button>
-                        <el-row justify="center" align="middle">
-                            <el-col><span style="font-size: 10px;">(点击分数查看详情)</span></el-col>
+                        <el-row>
+                            <el-col :span="8"></el-col>
+                            <el-col :span="8"><span style="font-size: 10px;">(点击分数查看详情)</span></el-col>
+                            <el-col :span="8" :offset="0" style="text-align: right"><span style="font-size: 10px;">更新:
+                                    {{ xbox.latestUpdated }}</span></el-col>
                         </el-row>
                     </div>
                 </el-card>
@@ -26,51 +29,54 @@
                     <img style="width: 100%; display: block" src="@/assets/images/playstation-plus.png" alt="">
                     <div style="padding: 8px">
                         <el-row justify="center" align="middle">
-                            <el-col><span><strong>Playstation Plus Extra</strong></span><span>&nbsp价值</span></el-col>
+                            <el-col><span><strong>Playstation Plus Extra</strong></span><span>&nbsp;价值</span></el-col>
                         </el-row>
                         <el-button size="large" type="info" plain @click="jumpPlaystation">
                             <count-up class="count-up" :end-val="playstation.totalRate" :options="countUpOptions">
                             </count-up>
                         </el-button>
-                        <el-row justify="center" align="middle">
-                            <el-col><span style="font-size: 10px;">(点击分数查看详情)</span></el-col>
+                        <el-row>
+                            <el-col :span="8"></el-col>
+                            <el-col :span="8"><span style="font-size: 10px;">(点击分数查看详情)</span></el-col>
+                            <el-col :span="8" :offset="0" style="text-align: right"><span style="font-size: 10px;">更新:
+                                    {{ playstation.latestUpdated }}
+                                </span></el-col>
                         </el-row>
-
                     </div>
                 </el-card>
             </el-col>
         </el-row>
         <br>
         <el-row>
-            <el-col :xs="1" :sm="1" :md="4" :lg="4" :xl="4"></el-col>
-            <el-col :xs="22" :sm="22" :md="16" :lg="16" :xl="16">
+            <el-col :xs="1" :sm="2" :md="4" :lg="6" :xl="8"></el-col>
+            <el-col :xs="22" :sm="20" :md="16" :lg="12" :xl="8">
                 <el-divider></el-divider>
             </el-col>
         </el-row>
         <el-row justify="center" align="middle">
-            <el-col :xs="22" :sm="16" :md="12" :lg="8" :xl="6">
+            <el-col :xs="24" :sm="18" :md="14" :lg="10" :xl="8">
                 <div id="chnTitlesChart" style="width: 100%;height:400px;"></div>
             </el-col>
         </el-row>
         <el-row>
-            <el-col :xs="1" :sm="1" :md="4" :lg="4" :xl="4"></el-col>
-            <el-col :xs="22" :sm="22" :md="16" :lg="16" :xl="16">
+            <el-col :xs="1" :sm="2" :md="4" :lg="6" :xl="8"></el-col>
+            <el-col :xs="22" :sm="20" :md="16" :lg="12" :xl="8">
                 <el-divider></el-divider>
             </el-col>
         </el-row>
         <el-row justify="center" align="middle">
-            <el-col :xs="22" :sm="16" :md="12" :lg="8" :xl="6">
+            <el-col :xs="24" :sm="18" :md="14" :lg="10" :xl="8">
                 <div id="scoreChart" style="width: 100%;height:400px;"></div>
             </el-col>
         </el-row>
         <el-row>
-            <el-col :xs="1" :sm="1" :md="4" :lg="4" :xl="4"></el-col>
-            <el-col :xs="22" :sm="22" :md="16" :lg="16" :xl="16">
+            <el-col :xs="1" :sm="2" :md="4" :lg="6" :xl="8"></el-col>
+            <el-col :xs="22" :sm="20" :md="16" :lg="12" :xl="8">
                 <el-divider></el-divider>
             </el-col>
         </el-row>
         <el-row justify="center" align="middle">
-            <el-col :xs="22" :sm="16" :md="12" :lg="8" :xl="6">
+            <el-col :xs="24" :sm="18" :md="14" :lg="10" :xl="8">
                 <div id="releaseYearChart" style="width: 100%;height:400px;"></div>
             </el-col>
         </el-row>
@@ -96,7 +102,14 @@
         <br>
         <el-row justify="center" align="middle">
             <el-col>
-                说明: 数据来源, 价值计算方式等均在源代码中公开; 汇率仅供参考; 在计算订阅价值时假定订阅年费相等;
+                说明:
+            </el-col>
+            <el-col>
+                数据来源, 价值计算方式等均在源代码中公开; 汇率仅供参考; 在计算订阅价值时假定订阅年费相等;
+            </el-col>
+            <el-col>
+                评分取自<a href="https://opencritic.com/" target="_blank">OpenCritic</a>以及<a
+                    href="https://www.metacritic.com/" target="_blank">Metacritic</a>;
             </el-col>
         </el-row>
         <br>
@@ -116,7 +129,9 @@
 import Papa from 'papaparse';
 import * as echarts from 'echarts';
 import CountUp from 'vue-countup-v3';
-import common from '@/utils/common'
+import common from '@/utils/common';
+import axios from 'axios';
+import moment from "moment";
 
 export default {
     name: 'Home',
@@ -140,7 +155,8 @@ export default {
                 overwhelmingDislikeTitles: 0,
                 myScore: 0,
                 totalRate: 0,
-                releaseYearArray: []
+                releaseYearArray: [],
+                latestUpdated: '',
             },
             playstation: {
                 tableData: [],
@@ -157,7 +173,8 @@ export default {
                 overwhelmingDislikeTitles: 0,
                 myScore: 0,
                 totalRate: 0,
-                releaseYearArray: []
+                releaseYearArray: [],
+                latestUpdated: '',
             },
             usdExchangeRate: common.usdExchangeRate,
             hkdExchangeRate: common.hkdExchangeRate,
@@ -317,8 +334,6 @@ export default {
                         type: 'bar',
                         stack: 'x',
                         name: '中文游戏',
-                        lable: {
-                        },
                         itemStyle: {
                             color: '#FAC859'
                         },
@@ -334,6 +349,10 @@ export default {
                     }
                 ]
 
+            });
+
+            window.addEventListener("resize", function () {
+                myChart.resize();
             });
 
         },
@@ -431,6 +450,9 @@ export default {
                 ]
 
             });
+            window.addEventListener("resize", function () {
+                myChart.resize();
+            });
 
         },
         createScoreChart() {
@@ -460,10 +482,39 @@ export default {
                 },
                 xAxis: {
                     type: 'category',
-                    data: ["极度差评", "普遍差评", "褒贬不一", '普遍好评', '普遍赞誉']
+                    data: ["极度差评", "普遍差评", "褒贬不一", '普遍好评', '普遍赞誉'],
+                    name: '评分 0 -> 100',
+                    nameLocation: 'middle',
+                    nameGap: 30,
+                    // axisLabel: {
+                    //     formatter: function (value, index) {
+                    //         return value + '分';
+                    //     },
+                    // },
+                    // axisPointer: {
+                    //     label: {
+                    //         formatter: function (params) {
+                    //             return params.value + '分';
+                    //         }
+                    //     }
+                    // },
+                    // axisTick: {
+                    //     alignWithLabel: true
+                    // },
+                    // splitArea: {
+                    //     show: true,
+                    //     areaStyle: {
+                    //         color: ['rgba(255,0,0,0.3)', 'rgba(255,0,0,0.3)', 'rgba(255,204,51,0.3)', 'rgba(102,204,51,0.3)', 'rgba(102,204,51,0.3)']
+                    //     }
+                        
+                    // },
+                    // splitLine: {
+                    //     show: true,
+                    // }
                 },
                 yAxis: {
-                    type: 'value'
+                    type: 'value',
+                    name: '数量'
                 },
                 series: [
                     {
@@ -485,6 +536,23 @@ export default {
                 ]
 
             });
+            window.addEventListener("resize", function () {
+                myChart.resize();
+            });
+        },
+        getDataLatestUpdateDate() {
+            axios
+                .get('https://api.github.com/repos/lwp2070809/game-pass-values/commits?path=public%2Fgames-data%2Fxbox-game-pass-ultimate.csv&page=1&per_page=1')
+                .then(response => {
+                    let latestUpdated = response.data[0].commit.author.date;
+                    this.xbox.latestUpdated = moment(latestUpdated).format('YYYY-MM-DD');
+                })
+            axios
+                .get('https://api.github.com/repos/lwp2070809/game-pass-values/commits?path=public%2Fgames-data%2Fplaystation-plus-extra.csv&page=1&per_page=1')
+                .then(response => {
+                    let latestUpdated = response.data[0].commit.author.date;
+                    this.playstation.latestUpdated = moment(latestUpdated).format('YYYY-MM-DD');
+                })
         },
         jumpXbox() {
             this.$router.push({
@@ -504,6 +572,7 @@ export default {
     },
     mounted() {
         this.getData();
+        this.getDataLatestUpdateDate();
     }
 }
 
