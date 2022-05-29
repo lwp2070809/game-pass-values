@@ -7,7 +7,7 @@
     </el-col>
   </el-row>
   <el-row>
-    <el-col> <strong>Xbox Game Pass Ultimate (主机版, 不含PGP)</strong></el-col>
+    <el-col> <strong>Xbox Game Pass Ultimate</strong></el-col>
     <el-col>总数量: {{ totalNum }}</el-col>
     <el-col>中文游戏数: {{ totalChnNum }}</el-col>
     <el-col>港区价值: {{ (hkTotalPrice).toFixed(2) }} HKD</el-col>

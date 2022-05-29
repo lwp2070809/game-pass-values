@@ -2,7 +2,7 @@
 
 * In development
 * A rookie front-end developer
-* Thanks for @[webguicai](https://github.com/webguicai)
+* Thanks for [@webguicai](https://github.com/webguicai), a senior front-end  develop engineer.
 
 ## 开发计划
 

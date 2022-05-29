@@ -7,7 +7,7 @@
                     <img style="width: 100%; display: block" src="@/assets/images/xbox-game-pass-ultimate.jpeg" alt="">
                     <div style="padding: 8px">
                         <el-row justify="center" align="middle">
-                            <el-col><span><strong>Xbox Game Pass Ultimate (主机版)</strong></span><span>&nbsp价值</span></el-col>
+                            <el-col><span><strong>Xbox Game Pass Ultimate</strong></span><span>&nbsp价值</span></el-col>
                         </el-row>
                         <el-button @click="jumpXbox" size="large" type="success" plain>
                             <count-up class="count-up" :end-val="xbox.totalRate" :options="countUpOptions"></count-up>
@@ -70,9 +70,9 @@
         </el-row>
         <el-row justify="center" align="middle">
             <el-col>
-                感谢百度贴吧吧友@<a
+                感谢百度贴吧吧友<a
                     href="https://tieba.baidu.com/home/main?id=tb.1.8dc0bc78.9ZuSZ2lLdFlKj2kCG2NAug?t=1601177036&fr=pb"
-                    target="_blank">-妖子琦-</a>提供数据
+                    target="_blank">@-妖子琦-</a>提供数据
             </el-col>
         </el-row>
         <br>
@@ -90,10 +90,7 @@
         <br>
         <el-row justify="center" align="middle">
             <el-col>
-                说明: 数据来源, 价值计算方式等均在源代码中公开; 汇率仅供参考;
-            </el-col>
-            <el-col>
-                统计XGPU时, 不包含PC Game Pass的数据; 在计算订阅价值时假定订阅年费相等;
+                说明: 数据来源, 价值计算方式等均在源代码中公开; 汇率仅供参考; 在计算订阅价值时假定订阅年费相等;
             </el-col>
         </el-row>
         <br>
