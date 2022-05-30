@@ -182,6 +182,7 @@ export default {
                 separator: "",
                 duration: 1.5
             },
+            valuesArray: []
         }
     },
     methods: {
@@ -255,8 +256,12 @@ export default {
                         item.年份 = '2020';
                     }
                     this.xbox.releaseYearArray.push(item.年份);
-                    this.xbox.totalRate += (price * 0.1 + Math.pow(score, 3) * 0.0001 + Math.pow(Number(item.年份) - 1985, 3) * 0.001) * rateFixed;
-
+                    this.xbox.totalRate += common.calTitleValue(price, score, item.年份, rateFixed);
+                    let valueObject = {
+                        "游戏名": item.中文名.length > 0 ? item.中文名 : item.英文名,
+                        "价值": Math.round(common.calTitleValue(price, score, item.年份, rateFixed))
+                    };
+                    this.valuesArray.push(valueObject);     
                 });
             }
             let playstationResult = await this.getPlaystationData();
@@ -300,10 +305,15 @@ export default {
                         item.年份 = '2020';
                     }
                     this.playstation.releaseYearArray.push(item.年份);
-                    this.playstation.totalRate += (price * 0.1 + Math.pow(score, 3) * 0.0001 + Math.pow(Number(item.年份) - 1985, 3) * 0.001) * rateFixed;
-
+                    this.playstation.totalRate += common.calTitleValue(price, score, item.年份, rateFixed);
+                    let valueObject = {
+                        "游戏名": item.中文名.length > 0 ? item.中文名 : item.英文名,
+                        "价值": Math.round(common.calTitleValue(price, score, item.年份, rateFixed))
+                    };
+                    this.valuesArray.push(valueObject);
                 });
             }
+            console.log(this.valuesArray);
             this.createCharts();
         },
         createChnTitlesChart() {
