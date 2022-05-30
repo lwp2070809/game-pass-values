@@ -210,19 +210,21 @@ export default {
 
         },
         async getData() {
-            let xboxresult = await this.getXboxData();
+            let xboxResult = await this.getXboxData();
             {
-                this.xbox.tableData = xboxresult.data;
-                this.xbox.totalNum = xboxresult.data.length;
-                xboxresult.data.forEach(item => {
+                this.xbox.tableData = xboxResult.data;
+                this.xbox.totalNum = xboxResult.data.length;
+                xboxResult.data.forEach(item => {
                     this.xbox.hkTotalPrice += Number(item.港区价格);
-                    let price = this.xbox.hkTotalPrice * this.hkdExchangeRate;
+                    let price = Number(item.港区价格) * this.hkdExchangeRate;
                     if (item.港区价格.length == 0) {
                         this.xbox.usTotalPrice += Number(item.美区价格);
-                        price = this.xbox.usTotalPrice * this.usdExchangeRate;
+                        price = Number(item.美区价格) * this.usdExchangeRate;
                     }
+                    let rateFixed = 0.75;
                     if (item.中文.length > 0) {
                         this.xbox.totalChnNum += 1;
+                        rateFixed = 1.0;
                     }
                     let score = 70;
                     if (item.评分.length > 0) {
@@ -249,19 +251,25 @@ export default {
                     } else {
                         this.xbox.mixedTitles += 1;
                     }
+                    if (item.年份.length <= 0) {
+                        item.年份 = '2020';
+                    }
                     this.xbox.releaseYearArray.push(item.年份);
-                    this.xbox.totalRate = price * 0.1 + Math.pow(score, 2) * 0.004 + Math.pow(Number(item.年份) - 1985, 3) * 0.001;
+                    this.xbox.totalRate += (price * 0.1 + Math.pow(score, 2) * 0.004 + Math.pow(Number(item.年份) - 1985, 3) * 0.001) * rateFixed;
+
                 });
             }
-            let playstationresult = await this.getPlaystationData();
+            let playstationResult = await this.getPlaystationData();
             {
-                this.playstation.tableData = playstationresult.data;
-                this.playstation.totalNum = playstationresult.data.length;
-                playstationresult.data.forEach(item => {
+                this.playstation.tableData = playstationResult.data;
+                this.playstation.totalNum = playstationResult.data.length;
+                playstationResult.data.forEach(item => {
                     this.playstation.hkTotalPrice += Number(item.港服价格);
-                    let price = this.playstation.hkTotalPrice * this.hkdExchangeRate;
+                    let price = Number(item.港服价格) * this.hkdExchangeRate;
+                    let rateFixed = 0.75;
                     if (item.中文.length > 0) {
                         this.playstation.totalChnNum += 1;
+                        rateFixed = 1.0;
                     }
                     let score = 70;
                     if (item.评分.length > 0) {
@@ -288,8 +296,12 @@ export default {
                     } else {
                         this.playstation.mixedTitles += 1;
                     }
+                    if (item.年份.length <= 0) {
+                        item.年份 = '2020';
+                    }
                     this.playstation.releaseYearArray.push(item.年份);
-                    this.playstation.totalRate = price * 0.1 + Math.pow(score, 2) * 0.004 + Math.pow(Number(item.年份) - 1985, 3) * 0.001;
+                    this.playstation.totalRate += (price * 0.1 + Math.pow(score, 2) * 0.004 + Math.pow(Number(item.年份) - 1985, 3) * 0.001) * rateFixed;
+
                 });
             }
             this.createCharts();
@@ -506,7 +518,7 @@ export default {
                     //     areaStyle: {
                     //         color: ['rgba(255,0,0,0.3)', 'rgba(255,0,0,0.3)', 'rgba(255,204,51,0.3)', 'rgba(102,204,51,0.3)', 'rgba(102,204,51,0.3)']
                     //     }
-                        
+
                     // },
                     // splitLine: {
                     //     show: true,
