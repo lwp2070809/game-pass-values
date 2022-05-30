@@ -255,7 +255,7 @@ export default {
                         item.年份 = '2020';
                     }
                     this.xbox.releaseYearArray.push(item.年份);
-                    this.xbox.totalRate += (price * 0.1 + Math.pow(score, 2) * 0.004 + Math.pow(Number(item.年份) - 1985, 3) * 0.001) * rateFixed;
+                    this.xbox.totalRate += (price * 0.1 + Math.pow(score, 3) * 0.0001 + Math.pow(Number(item.年份) - 1985, 3) * 0.001) * rateFixed;
 
                 });
             }
@@ -300,7 +300,7 @@ export default {
                         item.年份 = '2020';
                     }
                     this.playstation.releaseYearArray.push(item.年份);
-                    this.playstation.totalRate += (price * 0.1 + Math.pow(score, 2) * 0.004 + Math.pow(Number(item.年份) - 1985, 3) * 0.001) * rateFixed;
+                    this.playstation.totalRate += (price * 0.1 + Math.pow(score, 3) * 0.0001 + Math.pow(Number(item.年份) - 1985, 3) * 0.001) * rateFixed;
 
                 });
             }
