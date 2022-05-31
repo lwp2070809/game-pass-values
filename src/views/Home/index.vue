@@ -244,9 +244,11 @@ export default {
                                 break;
                             case Number(item.评分) >= 20:
                                 this.xbox.generallyUnfavorableTitles += 1;
+                                rateFixed = rateFixed * 0.5;
                                 break;
                             case Number(item.评分) >= 0:
                                 this.xbox.overwhelmingDislikeTitles += 1;
+                                rateFixed = rateFixed * 0.1;
                                 break;
                         }
                     } else {
@@ -257,11 +259,11 @@ export default {
                     }
                     this.xbox.releaseYearArray.push(item.年份);
                     this.xbox.totalRate += common.calTitleValue(price, score, item.年份, rateFixed);
-                    let valueObject = {
-                        "游戏名": item.中文名.length > 0 ? item.中文名 : item.英文名,
-                        "价值": Math.round(common.calTitleValue(price, score, item.年份, rateFixed))
-                    };
-                    this.valuesArray.push(valueObject);     
+                    // let valueObject = {
+                    //     "游戏名": item.中文名.length > 0 ? item.中文名 : item.英文名,
+                    //     "价值": Math.round(common.calTitleValue(price, score, item.年份, rateFixed))
+                    // };
+                    // this.valuesArray.push(valueObject);     
                 });
             }
             let playstationResult = await this.getPlaystationData();
@@ -293,9 +295,11 @@ export default {
                                 break;
                             case Number(item.评分) >= 20:
                                 this.playstation.generallyUnfavorableTitles += 1;
+                                rateFixed = rateFixed * 0.5;
                                 break;
                             case Number(item.评分) >= 0:
                                 this.playstation.overwhelmingDislikeTitles += 1;
+                                rateFixed = rateFixed * 0.1;
                                 break;
                         }
                     } else {
@@ -306,14 +310,14 @@ export default {
                     }
                     this.playstation.releaseYearArray.push(item.年份);
                     this.playstation.totalRate += common.calTitleValue(price, score, item.年份, rateFixed);
-                    let valueObject = {
-                        "游戏名": item.中文名.length > 0 ? item.中文名 : item.英文名,
-                        "价值": Math.round(common.calTitleValue(price, score, item.年份, rateFixed))
-                    };
-                    this.valuesArray.push(valueObject);
+                    // let valueObject = {
+                    //     "游戏名": item.中文名.length > 0 ? item.中文名 : item.英文名,
+                    //     "价值": Math.round(common.calTitleValue(price, score, item.年份, rateFixed))
+                    // };
+                    // this.valuesArray.push(valueObject);
                 });
             }
-            console.log(this.valuesArray);
+            // console.log(this.valuesArray);
             this.createCharts();
         },
         createChnTitlesChart() {

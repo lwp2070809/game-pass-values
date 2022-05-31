@@ -7,7 +7,7 @@ const xboxGamePassUltimateData = 'games-data/xbox-game-pass-ultimate.csv';
 const playstationPlusExtraData = 'games-data/playstation-plus-extra.csv';
 
 const calTitleValue = (price, score, releaseYear, rateFixed) => {
-    let titleValue = (price * 0.1 + Math.pow(score, 3) * 0.0001 + Math.pow(Number(releaseYear) - 1985, 3) * 0.001) * rateFixed;
+    let titleValue = (price * 0.1 + Math.pow(score, 3) * 0.0001 + Math.pow(Number(releaseYear) - 1985, 4) * 0.00004) * rateFixed;
     return titleValue;
 }
 
