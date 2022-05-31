@@ -4,7 +4,8 @@
         <el-row justify="center" align="middle">
             <el-col :xs="22" :sm="16" :md="12" :lg="8" :xl="6">
                 <el-card :body-style="{ padding: '0px' }">
-                    <img style="width: 100%; display: block" src="@/assets/images/xbox-game-pass-ultimate.jpeg" alt="">
+                    <!-- <img style="width: 100%; display: block" src="@/assets/images/xbox-game-pass-ultimate.jpeg" alt=""> -->
+                    <img style="width: 100%; display: block" src="https://s1.ax1x.com/2022/05/31/X3fqJJ.jpg" alt="" />
                     <div style="padding: 8px">
                         <el-row justify="center" align="middle">
                             <el-col><span><strong>Xbox Game Pass Ultimate</strong></span><span>&nbsp;价值</span></el-col>
@@ -15,7 +16,7 @@
                         <el-row>
                             <el-col :span="8"></el-col>
                             <el-col :span="8"><span style="font-size: 10px;">(点击分数查看详情)</span></el-col>
-                            <el-col :span="8" :offset="0" style="text-align: right"><span style="font-size: 10px;">更新:
+                            <el-col :span="8" :offset="0" style="text-align: right"><span style="font-size: 10px;">数据更新:
                                     {{ xbox.latestUpdated }}</span></el-col>
                         </el-row>
                     </div>
@@ -26,7 +27,8 @@
         <el-row justify="center" align="middle">
             <el-col :xs="22" :sm="16" :md="12" :lg="8" :xl="6">
                 <el-card :body-style="{ padding: '0px' }">
-                    <img style="width: 100%; display: block" src="@/assets/images/playstation-plus.png" alt="">
+                    <!-- <img style="width: 100%; display: block" src="@/assets/images/playstation-plus.png" alt=""> -->
+                    <img style="width: 100%; display: block" src="https://s1.ax1x.com/2022/05/31/X3fxL6.jpg" alt="" />
                     <div style="padding: 8px">
                         <el-row justify="center" align="middle">
                             <el-col><span><strong>Playstation Plus Extra</strong></span><span>&nbsp;价值</span></el-col>
@@ -38,7 +40,7 @@
                         <el-row>
                             <el-col :span="8"></el-col>
                             <el-col :span="8"><span style="font-size: 10px;">(点击分数查看详情)</span></el-col>
-                            <el-col :span="8" :offset="0" style="text-align: right"><span style="font-size: 10px;">更新:
+                            <el-col :span="8" :offset="0" style="text-align: right"><span style="font-size: 10px;">数据更新:
                                     {{ playstation.latestUpdated }}
                                 </span></el-col>
                         </el-row>
@@ -130,8 +132,6 @@ import Papa from 'papaparse';
 import * as echarts from 'echarts';
 import CountUp from 'vue-countup-v3';
 import common from '@/utils/common';
-import axios from 'axios';
-import moment from "moment";
 
 export default {
     name: 'Home',
@@ -508,31 +508,6 @@ export default {
                     name: '评分 0 -> 100',
                     nameLocation: 'middle',
                     nameGap: 30,
-                    // axisLabel: {
-                    //     formatter: function (value, index) {
-                    //         return value + '分';
-                    //     },
-                    // },
-                    // axisPointer: {
-                    //     label: {
-                    //         formatter: function (params) {
-                    //             return params.value + '分';
-                    //         }
-                    //     }
-                    // },
-                    // axisTick: {
-                    //     alignWithLabel: true
-                    // },
-                    // splitArea: {
-                    //     show: true,
-                    //     areaStyle: {
-                    //         color: ['rgba(255,0,0,0.3)', 'rgba(255,0,0,0.3)', 'rgba(255,204,51,0.3)', 'rgba(102,204,51,0.3)', 'rgba(102,204,51,0.3)']
-                    //     }
-
-                    // },
-                    // splitLine: {
-                    //     show: true,
-                    // }
                 },
                 yAxis: {
                     type: 'value',
@@ -562,18 +537,18 @@ export default {
                 myChart.resize();
             });
         },
-        getDataLatestUpdateDate() {
-            axios
-                .get('https://api.github.com/repos/lwp2070809/game-pass-values/commits?path=public%2Fgames-data%2Fxbox-game-pass-ultimate.csv&page=1&per_page=1')
+        async getDataLatestUpdateDate() {
+            await fetch('https://api.github.com/repos/lwp2070809/game-pass-values/commits?path=public%2Fgames-data%2Fxbox-game-pass-ultimate.csv&page=1&per_page=1')
+                .then(response => response.json())
                 .then(response => {
-                    let latestUpdated = response.data[0].commit.author.date;
-                    this.xbox.latestUpdated = moment(latestUpdated).format('YYYY-MM-DD');
+                    let latestUpdated = response[0].commit.author.date;
+                    this.xbox.latestUpdated = common.iso8601ToDate(latestUpdated);
                 })
-            axios
-                .get('https://api.github.com/repos/lwp2070809/game-pass-values/commits?path=public%2Fgames-data%2Fplaystation-plus-extra.csv&page=1&per_page=1')
+            await fetch('https://api.github.com/repos/lwp2070809/game-pass-values/commits?path=public%2Fgames-data%2Fplaystation-plus-extra.csv&page=1&per_page=1')
+                .then(response => response.json())
                 .then(response => {
-                    let latestUpdated = response.data[0].commit.author.date;
-                    this.playstation.latestUpdated = moment(latestUpdated).format('YYYY-MM-DD');
+                    let latestUpdated = response[0].commit.author.date;
+                    this.playstation.latestUpdated = common.iso8601ToDate(latestUpdated);
                 })
         },
         jumpXbox() {

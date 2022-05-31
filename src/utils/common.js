@@ -11,10 +11,22 @@ const calTitleValue = (price, score, releaseYear, rateFixed) => {
     return titleValue;
 }
 
+const iso8601ToDate = (iso8601) => {
+    let date = new Date(iso8601);
+    // format: YYYY-MM-DD with Timezone Offset
+    return date.toLocaleDateString('zh-CN', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).replace(/\//g, '-');
+    
+}
+
 export default {
     usdExchangeRate,
     hkdExchangeRate,
     xboxGamePassUltimateData,
     playstationPlusExtraData,
-    calTitleValue
+    calTitleValue,
+    iso8601ToDate
 };
